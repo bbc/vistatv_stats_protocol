@@ -8,4 +8,4 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!
 
 # add lib to current path
-$: << File.join(File.dirname(__FILE__), '..', 'lib')
+$: << File.join(File.dirname(__FILE__), '..', 'lib', 'vistatv_stats_protocol')

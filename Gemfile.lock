@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vistatv_stats_protocol (0.1.0)
+    vistatv_stats_protocol (0.1.1)
 
 GEM
   remote: https://rubygems.org/

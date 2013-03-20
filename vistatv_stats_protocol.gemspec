@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('../lib/vistatv_stats_protocol', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'version'
 
