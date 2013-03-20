@@ -2,9 +2,33 @@ class Command
   class NotFoundError < Exception; end
   attr_reader :message, :type, :param
   
-  def initialize(message)
-    @message = message.chomp
-    @type, @param = parse
+  def initialize(*args)
+    if args.count == 1
+      args = args.first
+    end
+
+    case args
+    when String
+      @message = args.chomp
+      @type, @param = parse
+    when Hash
+      @type = args[:type].to_sym
+      @param = args[:param].to_sym
+      parse
+    when Array
+      @type, @param = args
+      parse
+    end
+  end
+
+  def message
+    return @message unless @message.nil?
+    @message = type.to_s
+    @message += "_#{param}" unless param.nil?
+  end
+
+  def serialize
+    message+"\n"
   end
   
   private
@@ -21,3 +45,4 @@ class Command
     end
   end
 end
+
