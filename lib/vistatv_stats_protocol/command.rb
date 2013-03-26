@@ -34,6 +34,8 @@ class Command
   private
   def parse
     case message.downcase
+    when 'discovery'
+      [:discovery, nil]
     when 'overview'
       [:overview, nil]
     when /^station_([\w\d_]+)$/

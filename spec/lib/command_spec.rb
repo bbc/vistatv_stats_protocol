@@ -22,6 +22,11 @@ describe Command do
     command.type.should  eql  :stop
     command.param.should eql  :station_bbc_radio_five
   end
+
+  it "recognises discovery command" do
+    command = Command.new("discovery\n")
+    command.type.should  eql  :discovery
+  end  
   
   it "invalidates other commands" do
     expect { Command.new("silly_command\n") }.to raise_exception Command::NotFoundError
