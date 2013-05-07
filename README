@@ -1,4 +1,0 @@
-Vista TV - Stats Protocol
--------------------------
-
-This is a gem file containing the shared protocol logic required to send messages via TCP between the server and client.
