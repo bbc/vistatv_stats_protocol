@@ -8,4 +8,6 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!
 
 # add lib to current path
-$: << File.join(File.dirname(__FILE__), '..', 'lib', 'stats_protocol')
+$: << File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'stats_protocol'
