@@ -5,9 +5,9 @@ describe VistaTV::StatsProtocol::Message do
     it "instantiates from a string" do
       message = VistaTV::StatsProtocol::Message.new('OK|command_name|{"bbc_one": "shows"}')
 
-      message.status.should  eql 'OK'
-      message.command.should eql 'command_name'
-      message.data.should    eql ({"bbc_one" => "shows"})
+      expect(message.status).to eq('OK')
+      expect(message.command).to eq('command_name')
+      expect(message.data).to eq({"bbc_one" => "shows"})
     end
 
     it "instantiates from an array" do
@@ -17,31 +17,31 @@ describe VistaTV::StatsProtocol::Message do
 
       message = VistaTV::StatsProtocol::Message.new(status, command, data)
 
-      message.status.should  eql 'ACK'
-      message.command.should eql 'array'
-      message.data.should    eql Hash.new
+      expect(message.status).to eq('ACK')
+      expect(message.command).to eq('array')
+      expect(message.data).to eq({})
     end
 
     it "instantiates from a hash" do
       message = VistaTV::StatsProtocol::Message.new(:status => 'OK', :command => 'hash_test', :data => '{"hash":true}')
 
-      message.status.should  eql 'OK'
-      message.command.should eql 'hash_test'
-      message.data.should    eql ({"hash" => true})
+      expect(message.status).to eq('OK')
+      expect(message.command).to eq('hash_test')
+      expect(message.data).to eq({"hash" => true})
     end
   end
 
   describe '#data' do
     it "parses JSON" do
       message = VistaTV::StatsProtocol::Message.new(:data => '{"radio_one": "smashing"}')
-      message.data.should eql ({"radio_one" => "smashing"})
+      expect(message.data).to eq({"radio_one" => "smashing"})
     end
   end
 
   describe '#serialize' do
     it "encodes JSON" do
       message = VistaTV::StatsProtocol::Message.new(:status => 'OK', :command => 'music', :data => {"radio_three" => "classic"})
-      message.serialize.should eql 'OK|music|{"radio_three":"classic"}'
+      expect(message.serialize).to eq('OK|music|{"radio_three":"classic"}')
     end
 
     it "fails unless well formed" do
