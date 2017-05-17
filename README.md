@@ -12,4 +12,4 @@ See `AUTHORS`
 
 ## Copyright
 
-Copyright 2013 British Broadcasting Corporation
+Copyright 2013-2017 British Broadcasting Corporation

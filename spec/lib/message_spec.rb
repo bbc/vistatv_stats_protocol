@@ -1,9 +1,9 @@
 require_relative '../spec_helper'
 
-describe StatsProtocol::Message do
+describe VistaTV::StatsProtocol::Message do
   describe 'instantiation' do
     it "instantiates from a string" do
-      message = StatsProtocol::Message.new('OK|command_name|{"bbc_one": "shows"}')
+      message = VistaTV::StatsProtocol::Message.new('OK|command_name|{"bbc_one": "shows"}')
 
       message.status.should  eql 'OK'
       message.command.should eql 'command_name'
@@ -15,7 +15,7 @@ describe StatsProtocol::Message do
       command = 'array'
       data    = '{}'
 
-      message = StatsProtocol::Message.new(status, command, data)
+      message = VistaTV::StatsProtocol::Message.new(status, command, data)
 
       message.status.should  eql 'ACK'
       message.command.should eql 'array'
@@ -23,7 +23,7 @@ describe StatsProtocol::Message do
     end
 
     it "instantiates from a hash" do
-      message = StatsProtocol::Message.new(:status => 'OK', :command => 'hash_test', :data => '{"hash":true}')
+      message = VistaTV::StatsProtocol::Message.new(:status => 'OK', :command => 'hash_test', :data => '{"hash":true}')
 
       message.status.should  eql 'OK'
       message.command.should eql 'hash_test'
@@ -33,20 +33,20 @@ describe StatsProtocol::Message do
 
   describe '#data' do
     it "parses JSON" do
-      message = StatsProtocol::Message.new(:data => '{"radio_one": "smashing"}')
+      message = VistaTV::StatsProtocol::Message.new(:data => '{"radio_one": "smashing"}')
       message.data.should eql ({"radio_one" => "smashing"})
     end
   end
 
   describe '#serialize' do
     it "encodes JSON" do
-      message = StatsProtocol::Message.new(:status => 'OK', :command => 'music', :data => {"radio_three" => "classic"})
+      message = VistaTV::StatsProtocol::Message.new(:status => 'OK', :command => 'music', :data => {"radio_three" => "classic"})
       message.serialize.should eql 'OK|music|{"radio_three":"classic"}'
     end
 
     it "fails unless well formed" do
-      message = StatsProtocol::Message.new(:status => 'OK', :data => {"radio_three" => "classic"})
-      expect { message.serialize }.to raise_exception StatsProtocol::Message::MalformedError
+      message = VistaTV::StatsProtocol::Message.new(:status => 'OK', :data => {"radio_three" => "classic"})
+      expect { message.serialize }.to raise_exception VistaTV::StatsProtocol::Message::MalformedError
     end
   end
 end

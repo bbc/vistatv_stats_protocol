@@ -1,0 +1,3 @@
+require_relative 'vistatv_stats_protocol/command'
+require_relative 'vistatv_stats_protocol/message'
+require_relative 'vistatv_stats_protocol/version'

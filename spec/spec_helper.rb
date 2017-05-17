@@ -10,4 +10,4 @@ WebMock.disable_net_connect!
 # add lib to current path
 $: << File.join(File.dirname(__FILE__), '..', 'lib')
 
-require 'stats_protocol'
+require 'vistatv_stats_protocol'
